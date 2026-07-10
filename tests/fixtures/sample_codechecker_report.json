@@ -1,0 +1,97 @@
+{
+  "version": 1,
+  "reports": [
+    {
+      "analyzer_result_file_path": "/reports/main.c_clang-tidy_abc123.plist",
+      "file": {
+        "id": "1",
+        "path": "src/main.c",
+        "original_path": "src/main.c"
+      },
+      "line": 42,
+      "column": 5,
+      "message": "Call to function 'strcpy' is insecure as it does not provide bounding of the memory buffer.",
+      "checker_name": "cert-str31-c",
+      "severity": "HIGH",
+      "report_hash": "hash-str31c-main-42",
+      "analyzer_name": "clang-tidy",
+      "category": "Memory",
+      "type": "",
+      "review_status": "unreviewed",
+      "bug_path_events": [
+        {
+          "file": {"id": "1", "path": "src/main.c", "original_path": "src/main.c"},
+          "line": 40,
+          "column": 3,
+          "message": "'buf' declared here with size 16",
+          "range": null
+        },
+        {
+          "file": {"id": "1", "path": "src/main.c", "original_path": "src/main.c"},
+          "line": 42,
+          "column": 5,
+          "message": "Call to function 'strcpy' is insecure",
+          "range": null
+        }
+      ],
+      "bug_path_positions": [],
+      "notes": [],
+      "macro_expansions": [],
+      "annotations": {}
+    },
+    {
+      "analyzer_result_file_path": "/reports/parse.c_clang-tidy_def456.plist",
+      "file": {
+        "id": "2",
+        "path": "src/parse.c",
+        "original_path": "src/parse.c"
+      },
+      "line": 17,
+      "column": 9,
+      "message": "'atoi' used to convert a string to an integer, but does not report conversion errors.",
+      "checker_name": "cert-err34-c",
+      "severity": "MEDIUM",
+      "report_hash": "hash-err34c-parse-17",
+      "analyzer_name": "clang-tidy",
+      "category": "Bad Practice",
+      "type": "",
+      "review_status": "unreviewed",
+      "bug_path_events": [
+        {
+          "file": {"id": "2", "path": "src/parse.c", "original_path": "src/parse.c"},
+          "line": 17,
+          "column": 9,
+          "message": "'atoi' used to convert a string to an integer",
+          "range": null
+        }
+      ],
+      "bug_path_positions": [],
+      "notes": [],
+      "macro_expansions": [],
+      "annotations": {}
+    },
+    {
+      "analyzer_result_file_path": "/reports/util.c_clang-analyzer_ghi789.plist",
+      "file": {
+        "id": "3",
+        "path": "src/util.c",
+        "original_path": "src/util.c"
+      },
+      "line": 8,
+      "column": 3,
+      "message": "Value stored to 'x' is never read.",
+      "checker_name": "deadcode.DeadStores",
+      "severity": "LOW",
+      "report_hash": "hash-deadstores-util-8",
+      "analyzer_name": "clangsa",
+      "category": "Dead code",
+      "type": "",
+      "review_status": "unreviewed",
+      "bug_path_events": [],
+      "bug_path_positions": [],
+      "notes": [],
+      "macro_expansions": [],
+      "annotations": {}
+    }
+  ]
+}

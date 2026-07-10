@@ -1,0 +1,41 @@
+{
+  "project": {
+    "root": "/path/to/your/c-project",
+    "build_command": "cmake -B build -DCMAKE_BUILD_TYPE=Debug && cmake --build build -j4",
+    "test_command": "ctest --test-dir build --output-on-failure",
+    "build_dir": "build"
+  },
+  "output_dir": "results/phase0-run",
+  "cert_guidelines": [
+    "sei-cert-c",
+    "sei-cert-cpp"
+  ],
+  "max_attempts_per_finding": 3,
+  "finding_limit": 25,
+  "models": [
+    {
+      "name": "claude-sonnet-5",
+      "provider": "anthropic",
+      "model_id": "claude-sonnet-5",
+      "api_key_env": "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",
+      "max_output_tokens": 4096,
+      "temperature": 0.0
+    },
+    {
+      "name": "gpt-5",
+      "provider": "openai",
+      "model_id": "gpt-5",
+      "api_key_env": "OPENAI_API_KEY",
+      "max_output_tokens": 4096,
+      "temperature": 0.0
+    },
+    {
+      "name": "llama3-70b-local",
+      "provider": "ollama",
+      "model_id": "llama3:70b",
+      "base_url": "http://localhost:11434",
+      "max_output_tokens": 4096,
+      "temperature": 0.0
+    }
+  ]
+}

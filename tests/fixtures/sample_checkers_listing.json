@@ -1,0 +1,41 @@
+[
+  {
+    "status": "enabled",
+    "name": "bugprone-exception-escape",
+    "analyzer": "clang-tidy",
+    "description": "Finds functions which might throw an exception directly or indirectly, but they should not.",
+    "labels": [
+      "doc_url:https://clang.llvm.org/extra/clang-tidy/checks/bugprone/exception-escape.html",
+      "guideline:sei-cert-cpp",
+      "profile:sensitive",
+      "sei-cert-cpp:msc53-cpp",
+      "severity:MEDIUM"
+    ]
+  },
+  {
+    "status": "enabled",
+    "name": "cert-err34-c",
+    "analyzer": "clang-tidy",
+    "description": "Detect improper conversion of string to number.",
+    "labels": [
+      "doc_url:https://clang.llvm.org/extra/clang-tidy/checks/cert/err34-c.html",
+      "guideline:sei-cert-c",
+      "profile:sensitive",
+      "sei-cert-c:err34-c",
+      "severity:MEDIUM"
+    ]
+  },
+  {
+    "status": "enabled",
+    "name": "cert-str31-c",
+    "analyzer": "clang-tidy",
+    "description": "Guarantee that storage for strings has sufficient space for character data and the null terminator.",
+    "labels": [
+      "doc_url:https://clang.llvm.org/extra/clang-tidy/checks/cert/str31-c.html",
+      "guideline:sei-cert-c",
+      "profile:sensitive",
+      "sei-cert-c:str31-c",
+      "severity:HIGH"
+    ]
+  }
+]
