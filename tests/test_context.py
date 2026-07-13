@@ -4,8 +4,10 @@ is a heuristic rather than a real parse), and the cross-file identifier
 occurrence search that lets fixes span every affected file."""
 
 from sectool.context import (
+    build_dependency_context,
     extract_code_context,
     find_identifier_occurrences,
+    identifier_at_location,
     identifiers_from_message,
 )
 
@@ -142,3 +144,21 @@ def test_occurrences_respect_caps(tmp_path):
 def test_no_identifiers_means_no_search(tmp_path):
     flagged = _mini_project(tmp_path)
     assert find_identifier_occurrences(tmp_path, [], flagged) == []
+
+
+def test_unquoted_generic_message_words_do_not_trigger_project_search(tmp_path):
+    flagged = tmp_path / "target.c"
+    flagged.write_text("void bad(void) { char data[4]; }\n")
+    (tmp_path / "unrelated.c").write_text("int data = 1; int name = 2;\n")
+
+    context = build_dependency_context(
+        tmp_path, flagged, "macro name is a reserved identifier"
+    )
+
+    assert context.snippets == []
+
+
+def test_identifier_at_finding_column_handles_preprocessor_macro(tmp_path):
+    header = tmp_path / "sample.h"
+    header.write_text("#define _SAMPLE_H 1\n")
+    assert identifier_at_location(header, 1, 9) == "_SAMPLE_H"

@@ -1,7 +1,7 @@
 # sectool
 
-`sectool` is a CLI-first workflow for taking C/C++ security findings from
-CodeChecker, giving an LLM enough source context to propose a fix, validating
+`sectool` is a CLI-first research workflow for taking C/C++ security findings
+and CWE benchmark tasks from CodeChecker, giving an LLM enough source context to propose a fix, validating
 that fix in an isolated checkout, and recording whether the model actually
 resolved the issue without breaking the project.
 
@@ -21,7 +21,8 @@ patch that compiles nowhere or changes the wrong thing.
 
 `sectool` closes that gap by:
 
-- Mapping CodeChecker reports to SEI CERT C/C++ rules.
+- Keeping analyzer evidence separate from CWE benchmark ground truth and SEI
+  CERT mappings.
 - Grouping findings that share one root-cause symbol into a single fix task.
 - Supplying focused source context, analyzer trace data, compile command data,
   curated remediation guidance, and syntax-aware source search tools.
@@ -30,7 +31,7 @@ patch that compiles nowhere or changes the wrong thing.
 - Verifying each attempt through patch, build, test, and CodeChecker re-scan
   gates before calling anything fixed.
 - Persisting prompts, raw responses, tool calls, patches, verification results,
-  reports, and transcripts so runs can be audited later.
+  reports, transcripts, and a reproducibility manifest so runs can be audited.
 
 The failure mode this is designed to prevent is the model "fixing" a symptom it
 does not understand. For example, a reserved-identifier warning on a namespace
@@ -86,8 +87,12 @@ Important config fields:
 - `project.test_command`: optional project test command.
 - `output_dir`: where scans, transcripts, database, reports, and patch artifacts
   are written.
-- `cert_guidelines`: CodeChecker guideline labels, normally `sei-cert-c` and
-  `sei-cert-cpp`.
+- `dispatch_filter`: `cert`, `cwe`, or `all`; this determines which taxonomy
+  makes a scan result an evaluation task.
+- `checker_enables`: additional CodeChecker sets such as `profile:security`.
+- `include_checkers` / `exclude_checkers`: checker-name glob filters that
+  remove incidental diagnostics from benchmark tasks.
+- `cwe_from_filename`: derive Juliet-style `CWE123_Name` ground truth from paths.
 - `max_attempts_per_finding`: retry budget per root-cause task.
 - `context_max_files` / `context_max_lines`: initial dependency context budget.
 - `max_context_rounds`: maximum model-requested context actions per attempt.
@@ -97,6 +102,12 @@ Important config fields:
 Supported providers are Anthropic, OpenAI, and Ollama. Provider-specific
 adapters share the same prompt and JSON action protocol so model comparisons are
 not mixed with prompt differences.
+
+For Juliet-style evaluation, start from
+[`docs/config.cwe-example.json`](docs/config.cwe-example.json). A CWE run must
+enable security checkers and set `dispatch_filter` to `cwe`; scanning only CERT
+guidelines mostly selects incidental style and support-code warnings rather than
+the benchmark weakness.
 
 ## Commands
 
@@ -109,7 +120,8 @@ sectool report results/my-run/findings.db -o results/my-run
 sectool show results/my-run/findings.db <finding_hash> [--model NAME]
 ```
 
-`sectool scan` runs CodeChecker and lists matched SEI CERT findings. It does not
+`sectool scan` runs CodeChecker and lists findings matched by the configured
+taxonomy and checker filters. It does not
 call any model.
 
 `sectool run` executes the full workflow. In an interactive terminal it uses
@@ -128,8 +140,8 @@ verification history.
 The model is not asked to return a free-form patch as its primary interface.
 Each request contains:
 
-- CodeChecker checker, analyzer, severity, location, message, CERT rule IDs,
-  and bug path events.
+- CodeChecker checker, analyzer, severity, location, message, CWE benchmark
+  metadata, CERT rule IDs, and bug path events.
 - The source window around the finding, shown with real file line numbers.
 - Related occurrence snippets from dependency context.
 - The compile command for the translation unit when available.
@@ -271,6 +283,8 @@ Each run writes to `output_dir`:
 - `report.json`: machine-readable scoring output.
 - `report.csv`: spreadsheet-friendly scoring output.
 - `report.html`: browsable report.
+- `run-manifest.json`: tool/prompt versions, git snapshot, model parameters,
+  scan policy, and exact selected finding identities.
 - `transcript-YYYYMMDD-HHMMSS.jsonl`: event-by-event transcript of the run when
   transcripts are enabled.
 - `cert_rule_map.json`: cached CodeChecker-to-CERT mapping.
@@ -299,6 +313,9 @@ Per model, the report includes:
 - `skipped`: findings skipped before completion.
 - `fix_rate`: `fixed / total`.
 - `regression_rate`: `regressed / total`.
+- `infrastructure_failures`: provider/configuration failures excluded from the
+  capability denominator.
+- `failure_categories`: model-output, patch, build, test, and re-scan failures.
 - `avg_attempts_to_resolve`: average attempt number for fixed findings.
 - per-SEI-CERT-rule totals and fix rates.
 

@@ -10,6 +10,16 @@
       "sei-cert-c",
       "sei-cert-cpp"
     ],
+    "checker_enables": [
+      "profile:security"
+    ],
+    "dispatch_filter": "cwe",
+    "include_checkers": [
+      "security.*",
+      "cppcheck-bufferAccessOutOfBounds",
+      "cppcheck-arrayIndexOutOfBounds"
+    ],
+    "cwe_from_filename": true,
     "max_attempts_per_finding": 3,
     "finding_limit": 25,
     "models": [

@@ -103,3 +103,24 @@ def test_undecodable_parse_output_is_scan_error(scanner, monkeypatch):
     with pytest.raises(ScanError):
         scanner.scan("make", on_event=events.append)
     assert events[-1].stage == "scan.parse" and events[-1].status == "error"
+
+
+def test_analyze_passes_configured_checker_enables(tmp_path, monkeypatch):
+    scanner = Scanner(
+        project_root=tmp_path,
+        workdir=tmp_path / "work",
+        cert_mapper=StaticMapper(),
+        checker_enables=("profile:security", "checkers:security.ArrayBound"),
+    )
+    captured = {}
+
+    def fake_run(args, stage, cwd, check_exit_code=True):
+        captured["args"] = args
+        (scanner.workdir / "reports").mkdir(parents=True, exist_ok=True)
+
+    monkeypatch.setattr(scanner, "_run", fake_run)
+    scanner._analyze(tmp_path / "compile_commands.json", None)
+
+    args = captured["args"]
+    assert ["-e", "profile:security"] == args[-4:-2]
+    assert ["-e", "checkers:security.ArrayBound"] == args[-2:]

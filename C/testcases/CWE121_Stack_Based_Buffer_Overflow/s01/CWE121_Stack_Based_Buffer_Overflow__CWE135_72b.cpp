@@ -22,7 +22,7 @@ Template File: sources-sinks-72b.tmpl.cpp
 
 using namespace std;
 
-namespace CWE121_Stack_Based_Buffer_Overflow__CWE135_72
+namespace CWE121_Stack_Based_Buffer_Overflow_CWE135_72
 {
 
 #ifndef OMITBAD

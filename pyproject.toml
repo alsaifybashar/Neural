@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "sectool"
 version = "0.1.0"
-description = "CodeChecker + LLM pipeline for resolving and evaluating SEI CERT C/C++ security findings"
+description = "Reproducible CodeChecker + LLM evaluation for C/C++ CWE and CERT security repair"
 requires-python = ">=3.10"
 dependencies = [
     "click>=8.1",

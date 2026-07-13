@@ -45,6 +45,21 @@ def test_upsert_and_get_finding_roundtrips(tmp_path):
     store.close()
 
 
+def test_cwe_and_failure_category_roundtrip(tmp_path):
+    store = FindingStore(tmp_path / "store.db")
+    store.upsert_finding(make_finding(cwe_ids=["CWE-121"], cwe_name="Buffer Overflow"))
+    store.add_verification_result(VerificationResult(
+        finding_hash="h1", model_name="model-a", attempt_number=1,
+        stage_reached=VerificationStage.PATCH, passed=False,
+        detail="not JSON", failure_category="model_output",
+    ))
+
+    assert store.get_finding("h1").cwe_ids == ["CWE-121"]
+    result = store.latest_verification_per_model("h1")["model-a"]
+    assert result.failure_category == "model_output"
+    store.close()
+
+
 def test_upsert_finding_is_idempotent_on_same_hash(tmp_path):
     store = FindingStore(tmp_path / "store.db")
     store.upsert_finding(make_finding(message="first"))

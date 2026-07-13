@@ -7,15 +7,15 @@ document is the deep technical reference.
 
 ## 1. What it does, in one paragraph
 
-`sectool` scans a C/C++ project with **CodeChecker**, keeps only the
-findings that map to a **SEI CERT C/C++ Coding Standard** rule, sends each
+`sectool` scans a C/C++ project with **CodeChecker**, selects findings using
+configured **CWE benchmark**, **SEI CERT**, and checker-name filters, sends each
 one to one or more **LLMs** asking for a minimal patch, and only accepts a
 patch once it has cleared four independent gates (applies cleanly, builds,
 passes the project's existing tests, and a CodeChecker re-scan shows the
 finding gone with nothing new introduced). Every attempt -- prompt, raw
 model response, extracted diff, and gate-by-gate result -- is written to a
 SQLite database as it happens, and a Scorer/Report step turns that into a
-per-model, per-CERT-rule comparison. A terminal UI layer (`rich` +
+per-model, per-CWE/CERT-rule comparison. A terminal UI layer (`rich` +
 `questionary`) surfaces every step live so a developer never has to guess
 what the tool is doing.
 
@@ -108,6 +108,26 @@ Key structural point: **the pipeline modules (`scanner`, `verifier`,
 that wires a real `ui.RunUI` instance in as `on_event`, so the terminal
 experience is entirely swappable (e.g. a JSON-lines log renderer for CI)
 without touching pipeline logic.
+
+### 3.1 Analyzer evidence versus benchmark ground truth
+
+These inputs are intentionally separate. `checker_name`, message, location,
+and bug-path events are analyzer evidence. `cwe_ids` and `cwe_name` are dataset
+metadata derived from Juliet-style path segments when `cwe_from_filename` is
+enabled. CERT IDs come from CodeChecker checker labels. The prompt shows all
+three without claiming that one was derived from another.
+
+`dispatch_filter` chooses `cert`, `cwe`, or `all`. `include_checkers` and
+`exclude_checkers` are applied afterward. This second filter is required for
+benchmark corpora because a source tree can produce thousands of incidental
+diagnostics unrelated to its labeled weakness. Initial scan and verification
+re-scan receive the identical `checker_enables` set.
+
+Each run writes `run-manifest.json` with prompt/tool versions, project git
+identity, model request parameters, scan policy, and exact selected findings.
+Pre-verification model-output failures are persisted in the database; provider
+and configuration failures are categorized as infrastructure and excluded from
+the model-capability denominator.
 
 ## 4. CLI commands: what each one triggers
 

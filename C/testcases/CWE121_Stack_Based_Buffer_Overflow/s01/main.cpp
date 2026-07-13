@@ -1386,8 +1386,8 @@ int main(int argc, char * argv[]) {
 	printLine("Calling CWE121_Stack_Based_Buffer_Overflow__CWE129_fgets_73::good();");
 	CWE121_Stack_Based_Buffer_Overflow__CWE129_fgets_73::good();
 
-	printLine("Calling CWE121_Stack_Based_Buffer_Overflow__CWE135_72::good();");
-	CWE121_Stack_Based_Buffer_Overflow__CWE135_72::good();
+	printLine("Calling CWE121_Stack_Based_Buffer_Overflow_CWE135_72::good();");
+	CWE121_Stack_Based_Buffer_Overflow_CWE135_72::good();
 
 	printLine("Calling CWE121_Stack_Based_Buffer_Overflow__CWE129_connect_socket_83::good();");
 	CWE121_Stack_Based_Buffer_Overflow__CWE129_connect_socket_83::good();
@@ -3043,8 +3043,8 @@ int main(int argc, char * argv[]) {
 	printLine("Calling CWE121_Stack_Based_Buffer_Overflow__CWE129_fgets_73::bad();");
 	CWE121_Stack_Based_Buffer_Overflow__CWE129_fgets_73::bad();
 
-	printLine("Calling CWE121_Stack_Based_Buffer_Overflow__CWE135_72::bad();");
-	CWE121_Stack_Based_Buffer_Overflow__CWE135_72::bad();
+	printLine("Calling CWE121_Stack_Based_Buffer_Overflow_CWE135_72::bad();");
+	CWE121_Stack_Based_Buffer_Overflow_CWE135_72::bad();
 
 	printLine("Calling CWE121_Stack_Based_Buffer_Overflow__CWE129_connect_socket_83::bad();");
 	CWE121_Stack_Based_Buffer_Overflow__CWE129_connect_socket_83::bad();

@@ -4,13 +4,16 @@ sectool/__init__.py
 sectool/cli.py
 sectool/config.py
 sectool/context.py
+sectool/context_tools.py
 sectool/dispatcher.py
 sectool/events.py
 sectool/interactive.py
 sectool/preflight.py
 sectool/report.py
 sectool/review.py
+sectool/run_manifest.py
 sectool/scorer.py
+sectool/security_rules.py
 sectool/transcript.py
 sectool/ui.py
 sectool.egg-info/PKG-INFO
@@ -22,6 +25,7 @@ sectool.egg-info/top_level.txt
 sectool/findings/__init__.py
 sectool/findings/schema.py
 sectool/findings/store.py
+sectool/findings/tasks.py
 sectool/models/__init__.py
 sectool/models/anthropic_adapter.py
 sectool/models/base.py
@@ -35,6 +39,7 @@ sectool/scanner/codechecker.py
 sectool/verifier/__init__.py
 sectool/verifier/application.py
 sectool/verifier/build.py
+sectool/verifier/edits.py
 sectool/verifier/feedback.py
 sectool/verifier/patch.py
 sectool/verifier/verifier.py
@@ -51,11 +56,13 @@ tests/test_patch.py
 tests/test_pipeline_hardening.py
 tests/test_preflight.py
 tests/test_prompt.py
+tests/test_run_manifest.py
 tests/test_scanner_events.py
 tests/test_scanner_parsing.py
 tests/test_schema.py
 tests/test_scorer.py
 tests/test_store.py
+tests/test_tasks.py
 tests/test_transcript.py
 tests/test_ui.py
 tests/test_verifier_events.py

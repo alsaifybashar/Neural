@@ -2,7 +2,9 @@
 covering the three terminal outcomes (fixed / regressed / failed) and the
 per-CERT-rule breakdown."""
 
-from sectool.findings.schema import Finding, VerificationResult, VerificationStage
+from sectool.findings.schema import (
+    Finding, FixAttempt, VerificationResult, VerificationStage,
+)
 from sectool.findings.store import FindingStore
 from sectool.scorer import score
 
@@ -96,3 +98,29 @@ def test_score_handles_multiple_models_independently(tmp_path):
 
     assert scores["model-a"].fixed == 1
     assert scores["model-b"].failed == 1
+
+
+def test_score_counts_model_output_but_excludes_infrastructure(tmp_path):
+    store = FindingStore(tmp_path / "store.db")
+    store.upsert_finding(make_finding("h-output", "STR31-C"))
+    store.upsert_finding(make_finding("h-infra", "STR31-C"))
+    for finding_hash, category in (
+        ("h-output", "model_output"), ("h-infra", "infrastructure")
+    ):
+        store.add_fix_attempt(FixAttempt(
+            finding_hash=finding_hash, model_name="model-a", attempt_number=1,
+            patch_text="", prompt_text="", raw_model_response="",
+        ))
+        store.add_verification_result(VerificationResult(
+            finding_hash=finding_hash, model_name="model-a", attempt_number=1,
+            stage_reached=VerificationStage.PATCH, passed=False, detail="failed",
+            failure_category=category,
+        ))
+
+    result = score(store)["model-a"]
+    store.close()
+
+    assert result.total == 1
+    assert result.failed == 1
+    assert result.infrastructure_failures == 1
+    assert result.failure_categories == {"model_output": 1}

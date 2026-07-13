@@ -117,3 +117,18 @@ def test_validation_preserves_trailing_blank_context_line(worktree):
     result = validate_patch(patch, worktree)
     assert result.valid
     assert result.patch_text.endswith(" \n")
+
+
+def test_validation_rejects_analyzer_suppression_as_a_fix(worktree):
+    patch = (
+        "--- a/src/a.c\n"
+        "+++ b/src/a.c\n"
+        "@@ -8,3 +8,3 @@\n"
+        " {\n"
+        "-    strcpy(dst, src);\n"
+        "+    strcpy(dst, src); // NOLINT\n"
+        " }\n"
+    )
+    result = validate_patch(patch, worktree)
+    assert not result.valid
+    assert "suppressions" in result.detail

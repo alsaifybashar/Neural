@@ -8,7 +8,7 @@ import json
 from pathlib import Path
 
 from sectool.scanner.cert_mapping import CertRuleMapper
-from sectool.scanner.codechecker import parse_report_json
+from sectool.scanner.codechecker import cwe_metadata_from_path, parse_report_json
 
 FIXTURES = Path(__file__).parent / "fixtures"
 
@@ -78,3 +78,33 @@ def test_scanner_only_cert_findings_filter_matches_manual_filter(tmp_path):
 
     assert len(cert_only) == 2
     assert all(f.cert_rule_ids for f in cert_only)
+
+
+def test_juliet_path_supplies_separate_cwe_ground_truth(tmp_path):
+    raw = json.loads((FIXTURES / "sample_codechecker_report.json").read_text())
+    raw["reports"][0]["file"]["path"] = (
+        "C/testcases/CWE121_Stack_Based_Buffer_Overflow/"
+        "CWE121_demo__bad.c"
+    )
+
+    finding = parse_report_json(raw, make_mapper(tmp_path))[0]
+
+    assert finding.cwe_ids == ["CWE-121"]
+    assert finding.cwe_name == "Stack Based Buffer Overflow"
+    assert finding.cert_rule_ids == ["STR31-C"]
+    assert finding.primary_evaluation_rule() == "CWE-121"
+
+
+def test_cwe_filename_inference_can_be_disabled(tmp_path):
+    raw = json.loads((FIXTURES / "sample_codechecker_report.json").read_text())
+    raw["reports"][0]["file"]["path"] = "CWE121_Buffer_Overflow/example.c"
+    finding = parse_report_json(
+        raw, make_mapper(tmp_path), cwe_from_filename=False
+    )[0]
+    assert finding.cwe_ids == []
+
+
+def test_cwe_metadata_strips_juliet_flow_variant_suffix():
+    assert cwe_metadata_from_path("CWE121_Stack_Based_Buffer_Overflow__01.c") == (
+        ["CWE-121"], "Stack Based Buffer Overflow"
+    )

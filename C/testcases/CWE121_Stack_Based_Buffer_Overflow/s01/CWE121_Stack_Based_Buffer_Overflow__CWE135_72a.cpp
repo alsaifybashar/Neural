@@ -25,7 +25,7 @@ Template File: sources-sinks-72a.tmpl.cpp
 
 using namespace std;
 
-namespace CWE121_Stack_Based_Buffer_Overflow__CWE135_72
+namespace CWE121_Stack_Based_Buffer_Overflow_CWE135_72
 {
 
 #ifndef OMITBAD
@@ -101,7 +101,7 @@ void good()
 
 #ifdef INCLUDEMAIN
 
-using namespace CWE121_Stack_Based_Buffer_Overflow__CWE135_72; /* so that we can use good and bad easily */
+using namespace CWE121_Stack_Based_Buffer_Overflow_CWE135_72; /* so that we can use good and bad easily */
 
 int main(int argc, char * argv[])
 {

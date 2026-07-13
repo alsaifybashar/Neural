@@ -1,0 +1,40 @@
+{
+  "project": {
+    "root": "/path/to/Juliet",
+    "build_command": "make -C C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01 clean individuals",
+    "test_command": "",
+    "build_dir": "C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01"
+  },
+  "output_dir": "results/cwe121-model-name",
+  "cert_guidelines": [
+    "sei-cert-c",
+    "sei-cert-cpp"
+  ],
+  "checker_enables": [
+    "profile:security"
+  ],
+  "dispatch_filter": "cwe",
+  "include_checkers": [
+    "security.*",
+    "cppcheck-bufferAccessOutOfBounds",
+    "cppcheck-arrayIndexOutOfBounds"
+  ],
+  "exclude_checkers": [],
+  "cwe_from_filename": true,
+  "max_attempts_per_finding": 3,
+  "finding_limit": 25,
+  "context_max_files": 8,
+  "context_max_lines": 240,
+  "context_include_head_lines": 40,
+  "max_context_rounds": 4,
+  "max_format_retries": 2,
+  "models": [
+    {
+      "name": "model-under-test",
+      "provider": "openai",
+      "model_id": "model-id",
+      "api_key_env": "OPENAI_API_KEY",
+      "max_output_tokens": 8192
+    }
+  ]
+}

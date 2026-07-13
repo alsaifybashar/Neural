@@ -115,3 +115,17 @@ def test_unmapped_finding_states_no_rule_matched():
     )
 
     assert "none matched" in prompt
+
+
+def test_prompt_distinguishes_cwe_ground_truth_from_analyzer_evidence():
+    finding = make_finding()
+    finding.cwe_ids = ["CWE-121"]
+    finding.cwe_name = "Stack Based Buffer Overflow"
+
+    prompt = build_fix_prompt(
+        finding=finding, code_context="void f() {}", context_file_path="src/a.c"
+    )
+
+    assert "Benchmark weakness: CWE-121 (Stack Based Buffer Overflow)" in prompt
+    assert "CodeChecker supplied the analyzer evidence" in prompt
+    assert "Do not preserve the vulnerability" in prompt
