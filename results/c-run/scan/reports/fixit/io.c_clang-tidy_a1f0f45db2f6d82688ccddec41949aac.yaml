@@ -1,0 +1,174 @@
+---
+MainSourceFile:  '/home/ubuntu/github/Neural/C/testcasesupport/io.c'
+Diagnostics:
+  - DiagnosticName:  clang-diagnostic-double-promotion
+    DiagnosticMessage:
+      Message:         'implicit conversion increases floating-point precision: ''float'' to ''double'''
+      FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/io.c'
+      FileOffset:      627
+      Replacements:    []
+      Ranges:
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/io.c'
+          FileOffset:      627
+          Length:          11
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/io.c'
+          FileOffset:      612
+          Length:          6
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  cert-err33-c
+    DiagnosticMessage:
+      Message:         'the value returned by this function should not be disregarded; neglecting it may lead to errors'
+      FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/io.c'
+      FileOffset:      2729
+      Replacements:    []
+      Ranges:
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/io.c'
+          FileOffset:      2729
+          Length:          43
+    Notes:
+      - Message:         cast the expression to void to silence this warning
+        FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/io.c'
+        FileOffset:      2729
+        Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  cert-err34-c
+    DiagnosticMessage:
+      Message:         '''sscanf'' used to convert a string to an unsigned integer value, but function will not report conversion errors; consider using ''strtoul'' instead'
+      FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/io.c'
+      FileOffset:      2729
+      Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  cert-err33-c
+    DiagnosticMessage:
+      Message:         'the value returned by this function should not be disregarded; neglecting it may lead to errors'
+      FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/io.c'
+      FileOffset:      3700
+      Replacements:    []
+      Ranges:
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/io.c'
+          FileOffset:      3700
+          Length:          45
+    Notes:
+      - Message:         cast the expression to void to silence this warning
+        FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/io.c'
+        FileOffset:      3700
+        Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  cert-msc50-cpp
+    DiagnosticMessage:
+      Message:         'rand() has limited randomness'
+      FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/io.c'
+      FileOffset:      4157
+      Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  concurrency-mt-unsafe
+    DiagnosticMessage:
+      Message:         function is not thread safe
+      FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/io.c'
+      FileOffset:      4157
+      Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  bugprone-reserved-identifier
+    DiagnosticMessage:
+      Message:         'declaration uses identifier ''_STD_TESTCASE_H'', which is a reserved identifier'
+      FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase.h'
+      FileOffset:      33
+      Replacements:
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase.h'
+          Offset:          33
+          Length:          15
+          ReplacementText: STD_TESTCASE_H
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  clang-diagnostic-reserved-macro-identifier
+    DiagnosticMessage:
+      Message:         macro name is a reserved identifier
+      FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase.h'
+      FileOffset:      33
+      Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  bugprone-reserved-identifier
+    DiagnosticMessage:
+      Message:         'declaration uses identifier ''__STDC_LIMIT_MACROS'', which is a reserved identifier'
+      FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase.h'
+      FileOffset:      1230
+      Replacements:
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase.h'
+          Offset:          1230
+          Length:          19
+          ReplacementText: STDC_LIMIT_MACROS
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  clang-diagnostic-reserved-macro-identifier
+    DiagnosticMessage:
+      Message:         macro name is a reserved identifier
+      FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase.h'
+      FileOffset:      1230
+      Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  bugprone-reserved-identifier
+    DiagnosticMessage:
+      Message:         'declaration uses identifier ''_twoIntsStruct'', which is reserved in the global namespace'
+      FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase.h'
+      FileOffset:      3198
+      Replacements:
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase.h'
+          Offset:          3198
+          Length:          14
+          ReplacementText: twoIntsStruct
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  clang-diagnostic-reserved-identifier
+    DiagnosticMessage:
+      Message:         'identifier ''_twoIntsStruct'' is reserved because it starts with ''_'' at global scope'
+      FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase.h'
+      FileOffset:      3198
+      Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  bugprone-reserved-identifier
+    DiagnosticMessage:
+      Message:         'declaration uses identifier ''_STD_TESTCASE_IO_H'', which is a reserved identifier'
+      FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase_io.h'
+      FileOffset:      176
+      Replacements:
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase_io.h'
+          Offset:          176
+          Length:          18
+          ReplacementText: STD_TESTCASE_IO_H
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  clang-diagnostic-reserved-macro-identifier
+    DiagnosticMessage:
+      Message:         macro name is a reserved identifier
+      FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase_io.h'
+      FileOffset:      176
+      Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  misc-header-include-cycle
+    DiagnosticMessage:
+      Message:         'circular header file dependency detected while including ''std_testcase.h'', please check the include path'
+      FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase_io.h'
+      FileOffset:      207
+      Replacements:    []
+    Notes:
+      - Message:         '''std_testcase_io.h'' included from here'
+        FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase.h'
+        FileOffset:      3973
+        Replacements:    []
+      - Message:         '''std_testcase.h'' included from here'
+        FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/io.c'
+        FileOffset:      108
+        Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+...

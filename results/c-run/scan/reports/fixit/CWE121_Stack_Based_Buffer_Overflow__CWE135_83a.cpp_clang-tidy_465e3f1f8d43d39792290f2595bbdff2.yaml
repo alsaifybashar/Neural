@@ -1,0 +1,249 @@
+---
+MainSourceFile:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE135_83a.cpp'
+Diagnostics:
+  - DiagnosticName:  bugprone-reserved-identifier
+    DiagnosticMessage:
+      Message:         'declaration uses identifier ''CWE121_Stack_Based_Buffer_Overflow__CWE135_83'', which is a reserved identifier'
+      FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE135_83.h'
+      FileOffset:      704
+      Replacements:
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE135_83a.cpp'
+          Offset:          748
+          Length:          45
+          ReplacementText: CWE121_Stack_Based_Buffer_Overflow_CWE135_83
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE135_83a.cpp'
+          Offset:          1827
+          Length:          45
+          ReplacementText: CWE121_Stack_Based_Buffer_Overflow_CWE135_83
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE135_83.h'
+          Offset:          704
+          Length:          45
+          ReplacementText: CWE121_Stack_Based_Buffer_Overflow_CWE135_83
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  clang-diagnostic-reserved-identifier
+    DiagnosticMessage:
+      Message:         'identifier ''CWE121_Stack_Based_Buffer_Overflow__CWE135_83'' is reserved because it contains ''__'''
+      FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE135_83.h'
+      FileOffset:      704
+      Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  bugprone-reserved-identifier
+    DiagnosticMessage:
+      Message:         'declaration uses identifier ''CWE121_Stack_Based_Buffer_Overflow__CWE135_83_bad'', which is a reserved identifier'
+      FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE135_83.h'
+      FileOffset:      781
+      Replacements:
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE135_83a.cpp'
+          Offset:          874
+          Length:          49
+          ReplacementText: CWE121_Stack_Based_Buffer_Overflow_CWE135_83_bad
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE135_83.h'
+          Offset:          781
+          Length:          49
+          ReplacementText: CWE121_Stack_Based_Buffer_Overflow_CWE135_83_bad
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE135_83.h'
+          Offset:          848
+          Length:          49
+          ReplacementText: CWE121_Stack_Based_Buffer_Overflow_CWE135_83_bad
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE135_83.h'
+          Offset:          922
+          Length:          49
+          ReplacementText: CWE121_Stack_Based_Buffer_Overflow_CWE135_83_bad
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  clang-diagnostic-reserved-identifier
+    DiagnosticMessage:
+      Message:         'identifier ''CWE121_Stack_Based_Buffer_Overflow__CWE135_83_bad'' is reserved because it contains ''__'''
+      FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE135_83.h'
+      FileOffset:      781
+      Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  bugprone-reserved-identifier
+    DiagnosticMessage:
+      Message:         'declaration uses identifier ''CWE121_Stack_Based_Buffer_Overflow__CWE135_83_goodG2B'', which is a reserved identifier'
+      FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE135_83.h'
+      FileOffset:      1062
+      Replacements:
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE135_83a.cpp'
+          Offset:          1109
+          Length:          53
+          ReplacementText: CWE121_Stack_Based_Buffer_Overflow_CWE135_83_goodG2B
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE135_83.h'
+          Offset:          1062
+          Length:          53
+          ReplacementText: CWE121_Stack_Based_Buffer_Overflow_CWE135_83_goodG2B
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE135_83.h'
+          Offset:          1133
+          Length:          53
+          ReplacementText: CWE121_Stack_Based_Buffer_Overflow_CWE135_83_goodG2B
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE135_83.h'
+          Offset:          1211
+          Length:          53
+          ReplacementText: CWE121_Stack_Based_Buffer_Overflow_CWE135_83_goodG2B
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  clang-diagnostic-reserved-identifier
+    DiagnosticMessage:
+      Message:         'identifier ''CWE121_Stack_Based_Buffer_Overflow__CWE135_83_goodG2B'' is reserved because it contains ''__'''
+      FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE135_83.h'
+      FileOffset:      1062
+      Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  bugprone-reserved-identifier
+    DiagnosticMessage:
+      Message:         'declaration uses identifier ''CWE121_Stack_Based_Buffer_Overflow__CWE135_83_goodB2G'', which is a reserved identifier'
+      FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE135_83.h'
+      FileOffset:      1311
+      Replacements:
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE135_83a.cpp'
+          Offset:          1308
+          Length:          53
+          ReplacementText: CWE121_Stack_Based_Buffer_Overflow_CWE135_83_goodB2G
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE135_83.h'
+          Offset:          1311
+          Length:          53
+          ReplacementText: CWE121_Stack_Based_Buffer_Overflow_CWE135_83_goodB2G
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE135_83.h'
+          Offset:          1382
+          Length:          53
+          ReplacementText: CWE121_Stack_Based_Buffer_Overflow_CWE135_83_goodB2G
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE135_83.h'
+          Offset:          1460
+          Length:          53
+          ReplacementText: CWE121_Stack_Based_Buffer_Overflow_CWE135_83_goodB2G
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  clang-diagnostic-reserved-identifier
+    DiagnosticMessage:
+      Message:         'identifier ''CWE121_Stack_Based_Buffer_Overflow__CWE135_83_goodB2G'' is reserved because it contains ''__'''
+      FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE135_83.h'
+      FileOffset:      1311
+      Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  clang-diagnostic-unused-parameter
+    DiagnosticMessage:
+      Message:         'unused parameter ''argc'''
+      FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE135_83a.cpp'
+      FileOffset:      1935
+      Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  clang-diagnostic-unused-parameter
+    DiagnosticMessage:
+      Message:         'unused parameter ''argv'''
+      FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE135_83a.cpp'
+      FileOffset:      1948
+      Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  cert-msc51-cpp
+    DiagnosticMessage:
+      Message:         random number generator seeded with a disallowed source of seed value will generate a predictable sequence of values
+      FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE135_83a.cpp'
+      FileOffset:      1991
+      Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  bugprone-reserved-identifier
+    DiagnosticMessage:
+      Message:         'declaration uses identifier ''_STD_TESTCASE_H'', which is a reserved identifier'
+      FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase.h'
+      FileOffset:      33
+      Replacements:
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase.h'
+          Offset:          33
+          Length:          15
+          ReplacementText: STD_TESTCASE_H
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  clang-diagnostic-reserved-macro-identifier
+    DiagnosticMessage:
+      Message:         macro name is a reserved identifier
+      FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase.h'
+      FileOffset:      33
+      Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  bugprone-reserved-identifier
+    DiagnosticMessage:
+      Message:         'declaration uses identifier ''__STDC_LIMIT_MACROS'', which is a reserved identifier'
+      FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase.h'
+      FileOffset:      1230
+      Replacements:
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase.h'
+          Offset:          1230
+          Length:          19
+          ReplacementText: STDC_LIMIT_MACROS
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  clang-diagnostic-reserved-macro-identifier
+    DiagnosticMessage:
+      Message:         macro name is a reserved identifier
+      FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase.h'
+      FileOffset:      1230
+      Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  bugprone-reserved-identifier
+    DiagnosticMessage:
+      Message:         'declaration uses identifier ''_twoIntsStruct'', which is reserved in the global namespace'
+      FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase.h'
+      FileOffset:      3198
+      Replacements:
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase.h'
+          Offset:          3198
+          Length:          14
+          ReplacementText: twoIntsStruct
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  clang-diagnostic-reserved-identifier
+    DiagnosticMessage:
+      Message:         'identifier ''_twoIntsStruct'' is reserved because it starts with ''_'' at global scope'
+      FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase.h'
+      FileOffset:      3198
+      Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  bugprone-reserved-identifier
+    DiagnosticMessage:
+      Message:         'declaration uses identifier ''_STD_TESTCASE_IO_H'', which is a reserved identifier'
+      FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase_io.h'
+      FileOffset:      176
+      Replacements:
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase_io.h'
+          Offset:          176
+          Length:          18
+          ReplacementText: STD_TESTCASE_IO_H
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  clang-diagnostic-reserved-macro-identifier
+    DiagnosticMessage:
+      Message:         macro name is a reserved identifier
+      FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase_io.h'
+      FileOffset:      176
+      Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  misc-header-include-cycle
+    DiagnosticMessage:
+      Message:         'circular header file dependency detected while including ''std_testcase.h'', please check the include path'
+      FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase_io.h'
+      FileOffset:      207
+      Replacements:    []
+    Notes:
+      - Message:         '''std_testcase_io.h'' included from here'
+        FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase.h'
+        FileOffset:      3973
+        Replacements:    []
+      - Message:         '''std_testcase.h'' included from here'
+        FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE135_83a.cpp'
+        FileOffset:      658
+        Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+...

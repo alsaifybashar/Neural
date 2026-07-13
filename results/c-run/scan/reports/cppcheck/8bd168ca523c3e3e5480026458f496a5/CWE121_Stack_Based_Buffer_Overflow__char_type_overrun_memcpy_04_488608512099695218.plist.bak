@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+ <key>clang_version</key>
+<string>cppcheck version 2.19.0</string>
+ <key>files</key>
+ <array>
+  <string>/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__char_type_overrun_memcpy_04.c</string>
+  <string>/home/ubuntu/github/Neural/C/testcasesupport/std_testcase.h</string>
+  <string>/home/ubuntu/github/Neural/C/testcasesupport/std_testcase_io.h</string>
+ </array>
+ <key>diagnostics</key>
+ <array>
+  <dict>
+   <key>path</key>
+   <array>
+    <dict>
+     <key>kind</key><string>event</string>
+     <key>location</key>
+     <dict>
+      <key>line</key><integer>50</integer>
+      <key>col</key><integer>34</integer>
+      <key>file</key><integer>0</integer>
+     </dict>
+     <key>ranges</key>
+     <array>
+       <array>
+        <dict>
+         <key>line</key><integer>50</integer>
+         <key>col</key><integer>34</integer>
+         <key>file</key><integer>0</integer>
+        </dict>
+        <dict>
+         <key>line</key><integer>50</integer>
+         <key>col</key><integer>34</integer>
+         <key>file</key><integer>0</integer>
+        </dict>
+       </array>
+     </array>
+     <key>depth</key><integer>0</integer>
+     <key>extended_message</key>
+     <string>Buffer overrun</string>
+     <key>message</key>
+     <string>Buffer overrun</string>
+    </dict>
+   </array>
+   <key>description</key><string>Buffer is accessed out of bounds: structCharVoid.charFirst</string>
+   <key>category</key><string>error</string>
+   <key>type</key><string>Buffer is accessed out of bounds: structCharVoid.charFirst</string>
+   <key>check_name</key><string>bufferAccessOutOfBounds</string>
+   <!-- This hash is experimental and going to change! -->
+   <key>issue_hash_content_of_line_in_context</key><string>0</string>
+  <key>issue_context_kind</key><string></string>
+  <key>issue_context</key><string></string>
+  <key>issue_hash_function_offset</key><string></string>
+  <key>location</key>
+  <dict>
+   <key>line</key><integer>50</integer>
+   <key>col</key><integer>34</integer>
+   <key>file</key><integer>0</integer>
+  </dict>
+  </dict>
+ </array>
+</dict>
+</plist>

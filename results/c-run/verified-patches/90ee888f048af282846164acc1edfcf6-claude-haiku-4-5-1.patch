@@ -1,0 +1,23 @@
+--- a/C/testcasesupport/std_testcase.h
++++ b/C/testcasesupport/std_testcase.h
+@@ -1,5 +1,5 @@
+-#ifndef _STD_TESTCASE_H
+-#define _STD_TESTCASE_H
++#ifndef STD_TESTCASE_H
++#define STD_TESTCASE_H
+ 
+ /* This file exists in order to:
+  * 1) Include lots of standardized headers in one place
+--- a/C/testcasesupport/std_testcase_io.h
++++ b/C/testcasesupport/std_testcase_io.h
+@@ -2,8 +2,8 @@
+    because that name is already taken by a system header on 
+    Windows */
+ 
+-#ifndef _STD_TESTCASE_IO_H
+-#define _STD_TESTCASE_IO_H
++#ifndef STD_TESTCASE_IO_H
++#define STD_TESTCASE_IO_H
+ 
+ #include "std_testcase.h" /* needed for the twoint struct */
+ 

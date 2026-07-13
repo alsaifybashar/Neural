@@ -1,0 +1,272 @@
+---
+MainSourceFile:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_05.c'
+Diagnostics:
+  - DiagnosticName:  clang-diagnostic-unused-variable
+    DiagnosticMessage:
+      Message:         'unused variable ''dataGoodBuffer'''
+      FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_05.c'
+      FileOffset:      1272
+      Replacements:    []
+      Ranges:
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_05.c'
+          FileOffset:      1272
+          Length:          14
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  clang-diagnostic-sometimes-uninitialized
+    DiagnosticMessage:
+      Message:         'variable ''data'' is used uninitialized whenever ''if'' condition is false'
+      FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_05.c'
+      FileOffset:      1334
+      Replacements:    []
+      Ranges:
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_05.c'
+          FileOffset:      1334
+          Length:          10
+    Notes:
+      - Message:         uninitialized use occurs here
+        FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_05.c'
+        FileOffset:      1728
+        Replacements:    []
+        Ranges:
+          - FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_05.c'
+            FileOffset:      1728
+            Length:          4
+      - Message:         'remove the ''if'' if its condition is always true'
+        FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_05.c'
+        FileOffset:      1331
+        Replacements:
+          - FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_05.c'
+            Offset:          1331
+            Length:          20
+            ReplacementText: ''
+      - Message:         'initialize the variable ''data'' to silence this warning'
+        FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_05.c'
+        FileOffset:      1195
+        Replacements:
+          - FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_05.c'
+            Offset:          1195
+            Length:          0
+            ReplacementText: ' = NULL'
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  clang-diagnostic-unused-variable
+    DiagnosticMessage:
+      Message:         'unused variable ''dataBadBuffer'''
+      FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_05.c'
+      FileOffset:      1971
+      Replacements:    []
+      Ranges:
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_05.c'
+          FileOffset:      1971
+          Length:          13
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  clang-diagnostic-sometimes-uninitialized
+    DiagnosticMessage:
+      Message:         'variable ''data'' is used uninitialized whenever ''if'' condition is true'
+      FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_05.c'
+      FileOffset:      2096
+      Replacements:    []
+      Ranges:
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_05.c'
+          FileOffset:      2096
+          Length:          11
+    Notes:
+      - Message:         uninitialized use occurs here
+        FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_05.c'
+        FileOffset:      2627
+        Replacements:    []
+        Ranges:
+          - FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_05.c'
+            FileOffset:      2627
+            Length:          4
+      - Message:         'remove the ''if'' if its condition is always false'
+        FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_05.c'
+        FileOffset:      2093
+        Replacements:
+          - FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_05.c'
+            Offset:          2093
+            Length:          165
+            ReplacementText: ''
+      - Message:         'initialize the variable ''data'' to silence this warning'
+        FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_05.c'
+        FileOffset:      1957
+        Replacements:
+          - FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_05.c'
+            Offset:          1957
+            Length:          0
+            ReplacementText: ' = NULL'
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  clang-diagnostic-unused-variable
+    DiagnosticMessage:
+      Message:         'unused variable ''dataBadBuffer'''
+      FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_05.c'
+      FileOffset:      2828
+      Replacements:    []
+      Ranges:
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_05.c'
+          FileOffset:      2828
+          Length:          13
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  clang-diagnostic-sometimes-uninitialized
+    DiagnosticMessage:
+      Message:         'variable ''data'' is used uninitialized whenever ''if'' condition is false'
+      FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_05.c'
+      FileOffset:      2953
+      Replacements:    []
+      Ranges:
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_05.c'
+          FileOffset:      2953
+          Length:          10
+    Notes:
+      - Message:         uninitialized use occurs here
+        FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_05.c'
+        FileOffset:      3339
+        Replacements:    []
+        Ranges:
+          - FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_05.c'
+            FileOffset:      3339
+            Length:          4
+      - Message:         'remove the ''if'' if its condition is always true'
+        FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_05.c'
+        FileOffset:      2950
+        Replacements:
+          - FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_05.c'
+            Offset:          2950
+            Length:          20
+            ReplacementText: ''
+      - Message:         'initialize the variable ''data'' to silence this warning'
+        FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_05.c'
+        FileOffset:      2814
+        Replacements:
+          - FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_05.c'
+            Offset:          2814
+            Length:          0
+            ReplacementText: ' = NULL'
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  clang-diagnostic-unused-parameter
+    DiagnosticMessage:
+      Message:         'unused parameter ''argc'''
+      FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_05.c'
+      FileOffset:      3867
+      Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  clang-diagnostic-unused-parameter
+    DiagnosticMessage:
+      Message:         'unused parameter ''argv'''
+      FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_05.c'
+      FileOffset:      3880
+      Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  cert-msc51-cpp
+    DiagnosticMessage:
+      Message:         random number generator seeded with a disallowed source of seed value will generate a predictable sequence of values
+      FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_05.c'
+      FileOffset:      3923
+      Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  bugprone-reserved-identifier
+    DiagnosticMessage:
+      Message:         'declaration uses identifier ''_STD_TESTCASE_H'', which is a reserved identifier'
+      FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase.h'
+      FileOffset:      33
+      Replacements:
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase.h'
+          Offset:          33
+          Length:          15
+          ReplacementText: STD_TESTCASE_H
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  clang-diagnostic-reserved-macro-identifier
+    DiagnosticMessage:
+      Message:         macro name is a reserved identifier
+      FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase.h'
+      FileOffset:      33
+      Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  bugprone-reserved-identifier
+    DiagnosticMessage:
+      Message:         'declaration uses identifier ''__STDC_LIMIT_MACROS'', which is a reserved identifier'
+      FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase.h'
+      FileOffset:      1230
+      Replacements:
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase.h'
+          Offset:          1230
+          Length:          19
+          ReplacementText: STDC_LIMIT_MACROS
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  clang-diagnostic-reserved-macro-identifier
+    DiagnosticMessage:
+      Message:         macro name is a reserved identifier
+      FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase.h'
+      FileOffset:      1230
+      Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  bugprone-reserved-identifier
+    DiagnosticMessage:
+      Message:         'declaration uses identifier ''_twoIntsStruct'', which is reserved in the global namespace'
+      FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase.h'
+      FileOffset:      3198
+      Replacements:
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase.h'
+          Offset:          3198
+          Length:          14
+          ReplacementText: twoIntsStruct
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  clang-diagnostic-reserved-identifier
+    DiagnosticMessage:
+      Message:         'identifier ''_twoIntsStruct'' is reserved because it starts with ''_'' at global scope'
+      FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase.h'
+      FileOffset:      3198
+      Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  bugprone-reserved-identifier
+    DiagnosticMessage:
+      Message:         'declaration uses identifier ''_STD_TESTCASE_IO_H'', which is a reserved identifier'
+      FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase_io.h'
+      FileOffset:      176
+      Replacements:
+        - FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase_io.h'
+          Offset:          176
+          Length:          18
+          ReplacementText: STD_TESTCASE_IO_H
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  clang-diagnostic-reserved-macro-identifier
+    DiagnosticMessage:
+      Message:         macro name is a reserved identifier
+      FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase_io.h'
+      FileOffset:      176
+      Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+  - DiagnosticName:  misc-header-include-cycle
+    DiagnosticMessage:
+      Message:         'circular header file dependency detected while including ''std_testcase.h'', please check the include path'
+      FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase_io.h'
+      FileOffset:      207
+      Replacements:    []
+    Notes:
+      - Message:         '''std_testcase_io.h'' included from here'
+        FilePath:        '/home/ubuntu/github/Neural/C/testcasesupport/std_testcase.h'
+        FileOffset:      3973
+        Replacements:    []
+      - Message:         '''std_testcase.h'' included from here'
+        FilePath:        '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01/CWE121_Stack_Based_Buffer_Overflow__CWE193_char_alloca_cpy_05.c'
+        FileOffset:      619
+        Replacements:    []
+    Level:           Warning
+    BuildDirectory:  '/home/ubuntu/github/Neural/C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01'
+...

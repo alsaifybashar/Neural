@@ -1,0 +1,13 @@
+--- a/C/testcasesupport/std_testcase.h
++++ b/C/testcasesupport/std_testcase.h
+@@ -29,9 +29,7 @@
+ #pragma warning(disable:4996)
+ 
+ #else
+-/* Linux/GNU wants this macro, otherwise stdint.h and limits.h are mostly useless */
+-# define __STDC_LIMIT_MACROS 1
+-
++/* Linux/GNU: stdint.h and limits.h provide full functionality on modern systems */
+ #define ALLOCA alloca
+ #endif
+ 

@@ -1,12 +1,1 @@
-.venv/
-__pycache__/
-*.pyc
-*.egg-info/
-build/
-dist/
-results/
-*.db
-.pytest_cache/
-
-*.out
-*.o
+dolphin

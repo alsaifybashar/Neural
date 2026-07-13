@@ -1,0 +1,18 @@
+Metadata-Version: 2.4
+Name: sectool
+Version: 0.1.0
+Summary: CodeChecker + LLM pipeline for resolving and evaluating SEI CERT C/C++ security findings
+Requires-Python: >=3.10
+Requires-Dist: click>=8.1
+Requires-Dist: anthropic>=0.40
+Requires-Dist: openai>=1.50
+Requires-Dist: requests>=2.31
+Requires-Dist: jinja2>=3.1
+Requires-Dist: rich>=13.0
+Requires-Dist: questionary>=2.0
+Requires-Dist: tree-sitter>=0.23
+Requires-Dist: tree-sitter-c>=0.23
+Requires-Dist: tree-sitter-cpp>=0.23
+Provides-Extra: dev
+Requires-Dist: pytest>=8.0; extra == "dev"
+Requires-Dist: pytest-cov>=5.0; extra == "dev"

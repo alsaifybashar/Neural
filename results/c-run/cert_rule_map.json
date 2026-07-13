@@ -1,0 +1,935 @@
+{
+  "bugprone-assert-side-effect": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "PRE31-C"
+    ]
+  },
+  "bugprone-bad-signal-to-kill-thread": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "POS44-C"
+    ]
+  },
+  "bugprone-exception-escape": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "DCL57-CPP",
+      "ERR55-CPP",
+      "MSC53-CPP"
+    ]
+  },
+  "bugprone-macro-parentheses": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "PRE02-C"
+    ]
+  },
+  "bugprone-macro-repeated-side-effects": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "PRE31-C"
+    ]
+  },
+  "bugprone-multiple-new-in-one-expression": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "ERR51-CPP",
+      "EXP50-CPP",
+      "MEM51-CPP",
+      "MEM52-CPP"
+    ]
+  },
+  "bugprone-narrowing-conversions": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "EXP45-C",
+      "FIO34-C",
+      "FLP34-C",
+      "FLP36-C"
+    ]
+  },
+  "bugprone-pointer-arithmetic-on-polymorphic-object": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "CTR56-CPP"
+    ]
+  },
+  "bugprone-reserved-identifier": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "DCL37-C",
+      "DCL51-CPP"
+    ]
+  },
+  "bugprone-shared-ptr-array-mismatch": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "MEM51-CPP"
+    ]
+  },
+  "bugprone-signal-handler": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "SIG30-C",
+      "MSC54-CPP"
+    ]
+  },
+  "bugprone-signed-char-misuse": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "STR34-C"
+    ]
+  },
+  "bugprone-sizeof-expression": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "MEM35-C"
+    ]
+  },
+  "bugprone-spuriously-wake-up-functions": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "CON36-C",
+      "CON54-CPP"
+    ]
+  },
+  "bugprone-suspicious-memory-comparison": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "EXP42-C",
+      "FLP37-C"
+    ]
+  },
+  "bugprone-suspicious-memset-usage": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "INT31-C"
+    ]
+  },
+  "bugprone-suspicious-realloc-usage": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "ERR33-C"
+    ]
+  },
+  "bugprone-undefined-memory-manipulation": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "EXP62-CPP",
+      "OOP57-CPP"
+    ]
+  },
+  "bugprone-unhandled-exception-at-new": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "ERR51-CPP",
+      "MEM52-CPP"
+    ]
+  },
+  "bugprone-unhandled-self-assignment": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "OOP54-CPP"
+    ]
+  },
+  "bugprone-unique-ptr-array-mismatch": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "MEM51-CPP"
+    ]
+  },
+  "bugprone-unsafe-functions": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "MSC24-C",
+      "MSC33-C"
+    ]
+  },
+  "bugprone-unused-return-value": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "ERR33-C"
+    ]
+  },
+  "bugprone-use-after-move": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "EXP63-CPP"
+    ]
+  },
+  "cert-dcl03-c": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "DCL03-C"
+    ]
+  },
+  "cert-dcl16-c": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "DCL16-C"
+    ]
+  },
+  "cert-dcl50-cpp": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "DCL50-CPP"
+    ]
+  },
+  "cert-dcl58-cpp": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "DCL58-CPP"
+    ]
+  },
+  "cert-env33-c": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "ENV33-C"
+    ]
+  },
+  "cert-err33-c": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "ERR33-C"
+    ]
+  },
+  "cert-err34-c": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "ERR34-C"
+    ]
+  },
+  "cert-err52-cpp": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "ERR52-CPP"
+    ]
+  },
+  "cert-err58-cpp": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "ERR58-CPP"
+    ]
+  },
+  "cert-err60-cpp": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "ERR60-CPP"
+    ]
+  },
+  "cert-flp30-c": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "FLP30-C"
+    ]
+  },
+  "cert-mem57-cpp": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "MEM57-CPP"
+    ]
+  },
+  "cert-msc50-cpp": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "MSC30-C",
+      "MSC50-CPP"
+    ]
+  },
+  "cert-msc51-cpp": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "MSC32-C",
+      "MSC51-CPP"
+    ]
+  },
+  "cert-oop11-cpp": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "OOP11-CPP"
+    ]
+  },
+  "cert-oop57-cpp": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "OOP57-CPP"
+    ]
+  },
+  "cert-oop58-cpp": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "OOP58-CPP"
+    ]
+  },
+  "clang-diagnostic-array-bounds-pointer-arithmetic": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "ARR39-C"
+    ]
+  },
+  "clang-diagnostic-conditional-uninitialized": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "EXP33-C"
+    ]
+  },
+  "clang-diagnostic-dangling": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "MEM50-CPP"
+    ]
+  },
+  "clang-diagnostic-delete-abstract-non-virtual-dtor": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "OOP52-CPP"
+    ]
+  },
+  "clang-diagnostic-delete-incomplete": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "EXP57-CPP"
+    ]
+  },
+  "clang-diagnostic-delete-non-abstract-non-virtual-dtor": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "OOP52-CPP"
+    ]
+  },
+  "clang-diagnostic-delete-non-virtual-dtor": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "OOP52-CPP"
+    ]
+  },
+  "clang-diagnostic-double-promotion": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "FLP34-C"
+    ]
+  },
+  "clang-diagnostic-dynamic-class-memaccess": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "EXP62-CPP",
+      "OOP57-CPP"
+    ]
+  },
+  "clang-diagnostic-embedded-directive": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "PRE32-C"
+    ]
+  },
+  "clang-diagnostic-exceptions": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "ERR53-CPP",
+      "ERR54-CPP"
+    ]
+  },
+  "clang-diagnostic-float-conversion": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "FLP32-C",
+      "FLP34-C"
+    ]
+  },
+  "clang-diagnostic-format": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "FIO47-C"
+    ]
+  },
+  "clang-diagnostic-format-nonliteral": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "FIO30-C"
+    ]
+  },
+  "clang-diagnostic-format-overflow": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "MEM35-C"
+    ]
+  },
+  "clang-diagnostic-format-overflow-non-kprintf": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "MEM35-C"
+    ]
+  },
+  "clang-diagnostic-format-security": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "FIO30-C"
+    ]
+  },
+  "clang-diagnostic-implicit": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "DCL31-C"
+    ]
+  },
+  "clang-diagnostic-implicit-function-declaration": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "DCL31-C"
+    ]
+  },
+  "clang-diagnostic-implicit-int": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "DCL31-C"
+    ]
+  },
+  "clang-diagnostic-implicit-int-conversion": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "INT36-C"
+    ]
+  },
+  "clang-diagnostic-incompatible-function-pointer-types-strict": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "EXP37-C"
+    ]
+  },
+  "clang-diagnostic-incompatible-pointer-types": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "EXP32-C"
+    ]
+  },
+  "clang-diagnostic-incompatible-pointer-types-discards-qualifiers": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "EXP32-C"
+    ]
+  },
+  "clang-diagnostic-infinite-recursion": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "DCL56-CPP"
+    ]
+  },
+  "clang-diagnostic-int-conversion": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "INT36-C"
+    ]
+  },
+  "clang-diagnostic-invalid-noreturn": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "MSC53-CPP"
+    ]
+  },
+  "clang-diagnostic-mismatched-new-delete": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "MEM51-CPP"
+    ]
+  },
+  "clang-diagnostic-non-virtual-dtor": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "OOP52-CPP"
+    ]
+  },
+  "clang-diagnostic-over-aligned": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "MEM57-CPP"
+    ]
+  },
+  "clang-diagnostic-parentheses": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "EXP45-C"
+    ]
+  },
+  "clang-diagnostic-pointer-to-int-cast": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "INT36-C"
+    ]
+  },
+  "clang-diagnostic-reorder-ctor": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "OOP53-CPP"
+    ]
+  },
+  "clang-diagnostic-reserved-identifier": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "DCL37-C",
+      "DCL51-CPP"
+    ]
+  },
+  "clang-diagnostic-reserved-macro-identifier": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "DCL37-C",
+      "DCL51-CPP"
+    ]
+  },
+  "clang-diagnostic-reserved-module-identifier": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "DCL51-CPP"
+    ]
+  },
+  "clang-diagnostic-return-stack-address": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "DCL30-C",
+      "EXP54-CPP",
+      "EXP61-CPP"
+    ]
+  },
+  "clang-diagnostic-return-type": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "MSC37-C",
+      "MSC52-CPP"
+    ]
+  },
+  "clang-diagnostic-self-assign-overloaded": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "OOP54-CPP"
+    ]
+  },
+  "clang-diagnostic-sometimes-uninitialized": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "DCL41-C",
+      "EXP33-C"
+    ]
+  },
+  "clang-diagnostic-static-in-inline": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "MSC40-C"
+    ]
+  },
+  "clang-diagnostic-thread-safety-pointer": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "MSC54-C"
+    ]
+  },
+  "clang-diagnostic-unevaluated-expression": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "EXP44-C"
+    ]
+  },
+  "clang-diagnostic-uninitialized": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "EXP33-C"
+    ]
+  },
+  "clang-diagnostic-uninitialized-const-reference": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "EXP33-C"
+    ]
+  },
+  "clang-diagnostic-uninitialized-explicit-init": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "EXP33-C"
+    ]
+  },
+  "clang-diagnostic-unsequenced": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "EXP30-C"
+    ]
+  },
+  "clang-diagnostic-user-defined-literals": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "DCL51-CPP"
+    ]
+  },
+  "clang-diagnostic-varargs": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "EXP47-C",
+      "EXP58-CPP"
+    ]
+  },
+  "clang-diagnostic-vexing-parse": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "DCL53-CPP"
+    ]
+  },
+  "concurrency-mt-unsafe": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "CON33-C"
+    ]
+  },
+  "concurrency-thread-canceltype-asynchronous": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "POS47-C"
+    ]
+  },
+  "core.BitwiseShift": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "INT32-C",
+      "INT34-C"
+    ]
+  },
+  "core.CallAndMessage": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "DCL41-C",
+      "EXP30-C",
+      "EXP33-C",
+      "EXP34-C",
+      "EXP39-C",
+      "EXP50-CPP",
+      "EXP53-CPP",
+      "EXP54-CPP"
+    ]
+  },
+  "core.DivideZero": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "INT33-C"
+    ]
+  },
+  "core.NonNullParamChecker": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "EXP34-C"
+    ]
+  },
+  "core.NullDereference": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "EXP34-C"
+    ]
+  },
+  "core.StackAddressEscape": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "DCL30-C",
+      "EXP54-CPP",
+      "EXP61-CPP"
+    ]
+  },
+  "core.UndefinedBinaryOperatorResult": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "EXP33-C",
+      "EXP50-CPP"
+    ]
+  },
+  "core.VLASize": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "ARR32-C"
+    ]
+  },
+  "core.uninitialized.ArraySubscript": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "EXP33-C"
+    ]
+  },
+  "core.uninitialized.Assign": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "EXP33-C"
+    ]
+  },
+  "core.uninitialized.Branch": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "EXP33-C"
+    ]
+  },
+  "core.uninitialized.CapturedBlockVariable": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "EXP33-C"
+    ]
+  },
+  "core.uninitialized.NewArraySize": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "EXP33-C"
+    ]
+  },
+  "core.uninitialized.UndefReturn": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "OOP53-CPP"
+    ]
+  },
+  "cplusplus.ArrayDelete": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "EXP51-CPP"
+    ]
+  },
+  "cplusplus.InnerPointer": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "MEM50-CPP",
+      "STR52-CPP"
+    ]
+  },
+  "cplusplus.Move": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "EXP63-CPP"
+    ]
+  },
+  "cplusplus.NewDelete": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "EXP54-CPP",
+      "MEM50-CPP",
+      "MEM51-CPP",
+      "OOP54-CPP"
+    ]
+  },
+  "cplusplus.NewDeleteLeaks": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "MEM51-CPP"
+    ]
+  },
+  "cplusplus.PlacementNew": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "MEM54-CPP"
+    ]
+  },
+  "cplusplus.StringChecker": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "STR51-CPP"
+    ]
+  },
+  "cppcheck-ctunullpointer": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "EXP34-C"
+    ]
+  },
+  "cppcheck-legacyUninitvar": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "EXP33-C",
+      "EXP53-CPP"
+    ]
+  },
+  "cppcheck-terminateStrncpy": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "STR32-C"
+    ]
+  },
+  "cppcoreguidelines-pro-type-const-cast": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "EXP55-CPP"
+    ]
+  },
+  "cppcoreguidelines-slicing": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "OOP51-CPP"
+    ]
+  },
+  "deadcode.DeadStores": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "MSC12-C"
+    ]
+  },
+  "google-build-namespaces": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "DCL59-CPP"
+    ]
+  },
+  "misc-new-delete-overloads": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "DCL54-CPP"
+    ]
+  },
+  "misc-non-copyable-objects": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "FIO38-C"
+    ]
+  },
+  "misc-throw-by-value-catch-by-reference": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "ERR09-CPP",
+      "ERR61-CPP"
+    ]
+  },
+  "optin.core.EnumCastOutOfRange": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "MEM54-CPP"
+    ]
+  },
+  "optin.cplusplus.VirtualCall": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "OOP50-CPP"
+    ]
+  },
+  "optin.portability.UnixAPI": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "MEM30-C"
+    ]
+  },
+  "readability-enum-initial-value": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "INT09-C"
+    ]
+  },
+  "security.FloatLoopCounter": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "FLP30-C"
+    ]
+  },
+  "security.PointerSub": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "ARR36-C"
+    ]
+  },
+  "security.PutenvStackArray": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "POS34-C"
+    ]
+  },
+  "security.SetgidSetuidOrder": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "POS36-C"
+    ]
+  },
+  "security.cert.env.InvalidPtr": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "ENV31-C",
+      "ENV34-C"
+    ]
+  },
+  "security.insecureAPI.gets": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "STR31-C"
+    ]
+  },
+  "security.insecureAPI.strcpy": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "STR31-C"
+    ]
+  },
+  "security.insecureAPI.vfork": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "POS33-C"
+    ]
+  },
+  "unix.API": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "EXP37-C"
+    ]
+  },
+  "unix.Errno": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "ERR30-C"
+    ]
+  },
+  "unix.Malloc": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "MEM30-C",
+      "MEM31-C",
+      "MEM34-C",
+      "MEM35-C",
+      "MEM36-C"
+    ]
+  },
+  "unix.MallocSizeof": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "MEM35-C"
+    ]
+  },
+  "unix.MismatchedDeallocator": {
+    "guideline": "sei-cert-cpp",
+    "rule_ids": [
+      "MEM51-CPP"
+    ]
+  },
+  "unix.StdCLibraryFunctions": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "ARR38-C",
+      "ERR33-C",
+      "POS52-C"
+    ]
+  },
+  "unix.Stream": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "FIO42-C"
+    ]
+  },
+  "unix.Vfork": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "POS33-C"
+    ]
+  },
+  "unix.cstring.BadSizeArg": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "STR31-C"
+    ]
+  },
+  "unix.cstring.NotNullTerminated": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "STR31-C"
+    ]
+  },
+  "unix.cstring.NullArg": {
+    "guideline": "sei-cert-c",
+    "rule_ids": [
+      "EXP34-C"
+    ]
+  }
+}

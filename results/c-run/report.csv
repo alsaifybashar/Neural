@@ -1,0 +1,5 @@
+model,total,fixed,fix_rate,regressed,regression_rate,failed,skipped,avg_attempts_to_resolve
+gpt-5,0,0,0.0000,0,0.0000,0,0,
+claude-haiku-4-5,7,4,0.5714,1,0.1429,2,0,1.50
+claude-sonnet-5,0,0,0.0000,0,0.0000,0,0,
+claude-opus-4-8,0,0,0.0000,0,0.0000,0,0,
