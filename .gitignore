@@ -1,1 +1,3 @@
 dolphin
+*.zip
+__pycache__/
