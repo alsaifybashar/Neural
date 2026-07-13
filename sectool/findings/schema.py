@@ -13,8 +13,11 @@ CodeChecker version changes report internals but not this JSON contract.
 from __future__ import annotations
 
 import enum
+import hashlib
+import re
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
+from pathlib import Path
 
 
 class FindingStatus(str, enum.Enum):
@@ -163,6 +166,33 @@ class VerificationResult:
     new_findings: list[Finding] = field(default_factory=list)
 
     duration_seconds: float = 0.0
+    patch_text: str = ""
+    touched_files: list[str] = field(default_factory=list)
+    artifact_path: str = ""
     created_at: str = field(
         default_factory=lambda: datetime.now(timezone.utc).isoformat()
     )
+
+
+def normalized_finding_identity(finding: Finding, project_root: Path) -> str:
+    """Identity stable across disposable worktree prefixes and line shifts."""
+    root = Path(project_root).resolve()
+    path = Path(finding.file_path)
+    if not path.is_absolute():
+        relative = path
+    else:
+        try:
+            relative = path.resolve().relative_to(root)
+        except ValueError:
+            # A rescan path may come from another checkout. Retain the longest
+            # project-relative suffix by anchoring at a known source directory.
+            parts = path.parts
+            root_name = root.name
+            relative = (
+                Path(*parts[parts.index(root_name) + 1:])
+                if root_name in parts
+                else Path(path.name)
+            )
+    message = re.sub(r"\s+", " ", finding.message.strip().lower())
+    material = f"{finding.checker_name}\0{relative.as_posix()}\0{message}"
+    return hashlib.sha256(material.encode()).hexdigest()

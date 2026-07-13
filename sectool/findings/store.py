@@ -71,6 +71,9 @@ CREATE TABLE IF NOT EXISTS verification_results (
     target_resolved INTEGER NOT NULL,
     new_findings    TEXT NOT NULL,  -- JSON list[dict] (full Finding dicts)
     duration_seconds REAL NOT NULL,
+    patch_text       TEXT NOT NULL DEFAULT '',
+    touched_files    TEXT NOT NULL DEFAULT '[]',
+    artifact_path    TEXT NOT NULL DEFAULT '',
     created_at      TEXT NOT NULL,
     UNIQUE(finding_hash, model_name, attempt_number)
 );
@@ -93,6 +96,20 @@ class FindingStore:
         self._conn.row_factory = sqlite3.Row
         with closing(self._conn.cursor()) as cur:
             cur.executescript(_SCHEMA)
+            columns = {
+                row[1]
+                for row in cur.execute("PRAGMA table_info(verification_results)")
+            }
+            for name, declaration in (
+                ("patch_text", "TEXT NOT NULL DEFAULT ''"),
+                ("touched_files", "TEXT NOT NULL DEFAULT '[]'"),
+                ("artifact_path", "TEXT NOT NULL DEFAULT ''"),
+            ):
+                if name not in columns:
+                    cur.execute(
+                        f"ALTER TABLE verification_results "
+                        f"ADD COLUMN {name} {declaration}"
+                    )
         self._conn.commit()
 
     def close(self) -> None:
@@ -228,7 +245,8 @@ class FindingStore:
                     finding_hash, model_name, attempt_number, stage_reached,
                     passed, detail, target_resolved, new_findings,
                     duration_seconds, created_at
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    , patch_text, touched_files, artifact_path
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """,
                 (
                     result.finding_hash,
@@ -243,6 +261,9 @@ class FindingStore:
                     ),
                     result.duration_seconds,
                     result.created_at,
+                    result.patch_text,
+                    json.dumps(result.touched_files),
+                    result.artifact_path,
                 ),
             )
         self._conn.commit()
@@ -352,5 +373,8 @@ def _row_to_verification_result(row: sqlite3.Row) -> VerificationResult:
             for f in new_findings_raw
         ],
         duration_seconds=row["duration_seconds"],
+        patch_text=row["patch_text"] if "patch_text" in row.keys() else "",
+        touched_files=json.loads(row["touched_files"]) if "touched_files" in row.keys() else [],
+        artifact_path=row["artifact_path"] if "artifact_path" in row.keys() else "",
         created_at=row["created_at"],
     )

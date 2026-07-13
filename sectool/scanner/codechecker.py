@@ -48,6 +48,16 @@ import subprocess
 from dataclasses import dataclass
 from pathlib import Path
 
+from sectool.events import (
+    STAGE_SCAN_ANALYZE,
+    STAGE_SCAN_LOG,
+    STAGE_SCAN_PARSE,
+    STATUS_DONE,
+    STATUS_ERROR,
+    STATUS_START,
+    OnEvent,
+    emit,
+)
 from sectool.findings.schema import BugPathEvent, Finding
 from sectool.scanner.cert_mapping import CertRuleMapper, DEFAULT_CERT_GUIDELINES
 
@@ -92,7 +102,12 @@ class Scanner:
             cache_path=self.workdir / "cert_rule_map.json",
         )
 
-    def scan(self, build_command: str, only_cert_findings: bool = True) -> ScanResult:
+    def scan(
+        self,
+        build_command: str,
+        only_cert_findings: bool = True,
+        on_event: OnEvent = None,
+    ) -> ScanResult:
         """Run the full log -> analyze -> parse pipeline and return
         CERT-tagged Findings.
 
@@ -101,12 +116,17 @@ class Scanner:
         outside the configured guidelines -- useful for the Verifier's
         post-patch re-scan, which needs to see *any* new finding a patch
         introduces, not just CERT ones, to judge regressions correctly.
-        """
-        compile_db = self._log(build_command)
-        reports_dir = self._analyze(compile_db)
-        reports_json = self._parse(reports_dir)
 
-        raw = json.loads(reports_json.read_text())
+        `on_event`, if given, is called at the start/end of each CodeChecker
+        stage (see sectool/events.py) -- purely for progress reporting, e.g.
+        by sectool/ui.py. Every stage here is an opaque, potentially slow
+        subprocess call, so this is the only granularity of progress
+        available: "log started", "log finished", not "40% through log".
+        """
+        compile_db = self._log(build_command, on_event)
+        reports_dir = self._analyze(compile_db, on_event)
+        reports_json, raw = self._parse(reports_dir, on_event)
+
         all_reports = raw.get("reports", [])
         findings = parse_report_json(raw, self.cert_mapper)
 
@@ -119,46 +139,96 @@ class Scanner:
             reports_json_path=reports_json,
         )
 
-    def _log(self, build_command: str) -> Path:
+    def _log(self, build_command: str, on_event: OnEvent) -> Path:
         compile_db = self.workdir / "compile_commands.json"
-        self._run(
-            ["log", "-o", str(compile_db), "-b", build_command],
-            stage="log",
-            cwd=self.project_root,
-        )
-        if not compile_db.exists():
-            raise ScanError(
-                "CodeChecker log did not produce a compilation database at "
-                f"{compile_db}; check that build_command actually invokes "
-                "the compiler."
+        emit(on_event, STAGE_SCAN_LOG, STATUS_START, "Recording build with CodeChecker log...")
+        try:
+            self._run(
+                ["log", "-o", str(compile_db), "-b", build_command],
+                stage="log",
+                cwd=self.project_root,
             )
+            if not compile_db.exists():
+                raise ScanError(
+                    "CodeChecker log did not produce a compilation database at "
+                    f"{compile_db}; check that build_command actually invokes "
+                    "the compiler."
+                )
+        except ScanError as exc:
+            emit(on_event, STAGE_SCAN_LOG, STATUS_ERROR, str(exc))
+            raise
+        # `summary` on a done event is the stage's key facts for the UI/
+        # transcript -- here, how many compiler invocations were captured,
+        # since zero (or fewer than expected) means the build wasn't clean
+        # and files will silently be invisible to the analyzers.
+        entries = _count_compile_commands(compile_db)
+        emit(
+            on_event, STAGE_SCAN_LOG, STATUS_DONE, str(compile_db),
+            summary=f"{entries} compiler invocation(s) recorded -> {compile_db}",
+            compile_commands=entries,
+        )
         return compile_db
 
-    def _analyze(self, compile_db: Path) -> Path:
+    def _analyze(self, compile_db: Path, on_event: OnEvent) -> Path:
         reports_dir = self.workdir / "reports"
         args = ["analyze", str(compile_db), "-o", str(reports_dir), "--clean"]
         for guideline in self.cert_guidelines:
             args += ["-e", f"guideline:{guideline}"]
-        self._run(args, stage="analyze", cwd=self.project_root)
+        emit(
+            on_event, STAGE_SCAN_ANALYZE, STATUS_START,
+            f"Running analyzers for {', '.join(self.cert_guidelines)}...",
+        )
+        try:
+            self._run(args, stage="analyze", cwd=self.project_root)
+        except ScanError as exc:
+            emit(on_event, STAGE_SCAN_ANALYZE, STATUS_ERROR, str(exc))
+            raise
+        report_files = len(list(reports_dir.glob("*.plist")))
+        emit(
+            on_event, STAGE_SCAN_ANALYZE, STATUS_DONE, str(reports_dir),
+            summary=f"{report_files} analyzer report file(s) -> {reports_dir}",
+            report_files=report_files,
+        )
         return reports_dir
 
-    def _parse(self, reports_dir: Path) -> Path:
+    def _parse(self, reports_dir: Path, on_event: OnEvent) -> tuple[Path, dict]:
+        """Returns the exported JSON's path and its decoded content, so the
+        done event can carry the raw finding count without scan() re-reading
+        (and re-decoding) the same file."""
         reports_json = self.workdir / "reports.json"
-        self._run(
-            ["parse", str(reports_dir), "--export", "json", "-o", str(reports_json)],
-            stage="parse",
-            cwd=self.project_root,
-            # `CodeChecker parse` exits non-zero when findings are present
-            # (its exit code communicates "were there any reports", not
-            # "did parsing fail") -- so unlike log/analyze we don't treat a
-            # non-zero exit here as an error.
-            check_exit_code=False,
-        )
-        if not reports_json.exists():
-            raise ScanError(
-                f"CodeChecker parse did not produce {reports_json}"
+        emit(on_event, STAGE_SCAN_PARSE, STATUS_START, "Parsing analysis results...")
+        try:
+            self._run(
+                ["parse", str(reports_dir), "--export", "json", "-o", str(reports_json)],
+                stage="parse",
+                cwd=self.project_root,
+                # `CodeChecker parse` exits non-zero when findings are present
+                # (its exit code communicates "were there any reports", not
+                # "did parsing fail") -- so unlike log/analyze we don't treat a
+                # non-zero exit here as an error.
+                check_exit_code=False,
             )
-        return reports_json
+            if not reports_json.exists():
+                raise ScanError(
+                    f"CodeChecker parse did not produce {reports_json}"
+                )
+            try:
+                raw = json.loads(reports_json.read_text())
+            except json.JSONDecodeError as exc:
+                raise ScanError(
+                    f"CodeChecker parse produced undecodable JSON at "
+                    f"{reports_json}: {exc}"
+                ) from exc
+        except ScanError as exc:
+            emit(on_event, STAGE_SCAN_PARSE, STATUS_ERROR, str(exc))
+            raise
+        total = len(raw.get("reports", []))
+        emit(
+            on_event, STAGE_SCAN_PARSE, STATUS_DONE, str(reports_json),
+            summary=f"{total} raw finding(s) parsed -> {reports_json}",
+            total_reports=total,
+        )
+        return reports_json, raw
 
     def _run(
         self,
@@ -179,6 +249,17 @@ class Scanner:
                 f"{proc.stderr}"
             )
         return proc
+
+
+def _count_compile_commands(compile_db: Path) -> int:
+    """Number of compiler invocations `CodeChecker log` captured. A JSON
+    Compilation Database is a top-level array of command objects; anything
+    unreadable counts as 0 rather than failing the scan over a summary."""
+    try:
+        entries = json.loads(compile_db.read_text())
+        return len(entries) if isinstance(entries, list) else 0
+    except (OSError, json.JSONDecodeError):
+        return 0
 
 
 def parse_report_json(raw: dict, cert_mapper: CertRuleMapper) -> list[Finding]:

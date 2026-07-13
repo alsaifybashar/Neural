@@ -1,0 +1,25 @@
+  {
+    "project": {
+      "root": "/home/ubuntu/github/Neural",
+      "build_command": "make -C C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01 clean individuals",
+      "test_command": "",
+      "build_dir": "C/testcases/CWE121_Stack_Based_Buffer_Overflow/s01"
+    },
+    "output_dir": "results/c-run",
+    "cert_guidelines": [
+      "sei-cert-c",
+      "sei-cert-cpp"
+    ],
+    "max_attempts_per_finding": 3,
+    "finding_limit": 25,
+    "models": [
+      {
+        "name": "claude-haiku-4-5",
+        "provider": "anthropic",
+        "model_id": "claude-haiku-4-5",
+        "api_key_env": "ANTHROPIC_API_KEY",
+        "max_output_tokens": 4096,
+        "temperature": 0.0
+      }
+    ]
+  }

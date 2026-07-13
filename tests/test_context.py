@@ -1,8 +1,13 @@
 """Tests the function-boundary heuristic used to scope what source a model
 sees for a given finding (see sectool/context.py's docstring for why this
-is a heuristic rather than a real parse)."""
+is a heuristic rather than a real parse), and the cross-file identifier
+occurrence search that lets fixes span every affected file."""
 
-from sectool.context import extract_code_context
+from sectool.context import (
+    extract_code_context,
+    find_identifier_occurrences,
+    identifiers_from_message,
+)
 
 
 def test_short_file_returns_whole_file(tmp_path):
@@ -58,3 +63,82 @@ def test_missing_function_boundary_falls_back_to_window(tmp_path):
 
     assert not ctx.is_whole_file
     assert ctx.start_line < 150 < ctx.end_line
+
+
+# -- Cross-file identifier occurrences ----------------------------------------
+
+def test_identifiers_from_message_extracts_quoted_identifiers():
+    msg = "identifier 'CWE121_ns__72' is reserved because it contains '__'"
+    assert identifiers_from_message(msg) == ["CWE121_ns__72"]
+
+
+def test_identifiers_from_message_skips_short_and_invalid_tokens():
+    # 'if' is too short; '2bad' is not a valid identifier start; duplicates
+    # collapse.
+    msg = "'if' with 'longname' and '2bad' and 'longname' again"
+    assert identifiers_from_message(msg) == ["longname"]
+
+
+def _mini_project(tmp_path):
+    src = tmp_path / "src"
+    src.mkdir()
+    (src / "a.cpp").write_text(
+        "namespace demo__ns {\nvoid bad();\n}\n"
+    )
+    (src / "b.cpp").write_text(
+        "// sink definitions\nnamespace demo__ns {\nvoid bad() {}\n}\n"
+    )
+    (tmp_path / "main.cpp").write_text(
+        "int main() {\n    demo__ns::bad();\n    return 0;\n}\n"
+    )
+    (tmp_path / "notes.txt").write_text("demo__ns mentioned in a non-source file\n")
+    return src / "a.cpp"
+
+
+def test_occurrences_found_in_siblings_and_project_not_flagged_file(tmp_path):
+    flagged = _mini_project(tmp_path)
+    snippets = find_identifier_occurrences(tmp_path, ["demo__ns"], flagged)
+
+    files = [s.file_path for s in snippets]
+    assert "src/b.cpp" in files  # sibling searched first
+    assert "main.cpp" in files
+    assert "src/a.cpp" not in files  # the flagged file is the main context
+    assert "notes.txt" not in files  # non-source files ignored
+
+    b = next(s for s in snippets if s.file_path == "src/b.cpp")
+    assert "namespace demo__ns" in b.text
+    assert b.start_line == 1  # hit at line 2, minus context, clamped
+
+
+def test_occurrences_include_primary_file_outside_displayed_range(tmp_path):
+    flagged = _mini_project(tmp_path)
+    flagged.write_text(flagged.read_text() + "\nusing namespace demo__ns;\n")
+    snippets = find_identifier_occurrences(
+        tmp_path, ["demo__ns"], flagged, exclude_range=(1, 2)
+    )
+    own = [snippet for snippet in snippets if snippet.file_path == "src/a.cpp"]
+    assert own
+    assert any("demo__ns" in snippet.text for snippet in own)
+    assert all(snippet.text for snippet in snippets)
+
+
+def test_occurrences_match_whole_words_only(tmp_path):
+    flagged = _mini_project(tmp_path)
+    (tmp_path / "other.cpp").write_text("int demo__ns_similar = 1;\n")
+    snippets = find_identifier_occurrences(tmp_path, ["demo__ns"], flagged)
+    assert "other.cpp" not in [s.file_path for s in snippets]
+
+
+def test_occurrences_respect_caps(tmp_path):
+    flagged = _mini_project(tmp_path)
+    for i in range(10):
+        (tmp_path / f"extra_{i}.cpp").write_text("void f() { demo__ns::bad(); }\n" * 30)
+    snippets = find_identifier_occurrences(tmp_path, ["demo__ns"], flagged)
+
+    assert len({s.file_path for s in snippets}) <= 5
+    assert sum(len(s.text.splitlines()) for s in snippets) <= 40
+
+
+def test_no_identifiers_means_no_search(tmp_path):
+    flagged = _mini_project(tmp_path)
+    assert find_identifier_occurrences(tmp_path, [], flagged) == []

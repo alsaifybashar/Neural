@@ -7,3 +7,6 @@ dist/
 results/
 *.db
 .pytest_cache/
+
+*.out
+*.o

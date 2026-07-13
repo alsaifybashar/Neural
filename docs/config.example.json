@@ -11,29 +11,16 @@
     "sei-cert-cpp"
   ],
   "max_attempts_per_finding": 3,
+  "context_max_files": 8,
+  "context_max_lines": 240,
+  "max_context_rounds": 4,
   "finding_limit": 25,
   "models": [
     {
       "name": "claude-sonnet-5",
       "provider": "anthropic",
       "model_id": "claude-sonnet-5",
-      "api_key_env": "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",
-      "max_output_tokens": 4096,
-      "temperature": 0.0
-    },
-    {
-      "name": "gpt-5",
-      "provider": "openai",
-      "model_id": "gpt-5",
-      "api_key_env": "OPENAI_API_KEY",
-      "max_output_tokens": 4096,
-      "temperature": 0.0
-    },
-    {
-      "name": "llama3-70b-local",
-      "provider": "ollama",
-      "model_id": "llama3:70b",
-      "base_url": "http://localhost:11434",
+      "api_key_env": "ANTHROPIC_API_KEY",
       "max_output_tokens": 4096,
       "temperature": 0.0
     }

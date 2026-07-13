@@ -88,9 +88,21 @@ sectool scan my-run.json
 
 This should print how many CodeChecker findings were found in total and
 how many matched the SEI CERT guidelines. If it reports 0 CERT findings on
-a project you know has some, double-check `build_command` actually invokes
-the compiler (CodeChecker's `log` step only sees files that are actually
-compiled) and that step 3 above showed checkers for your guidelines.
+a project you know has some, check two things in order:
+
+1. `build_command` actually invokes the compiler (CodeChecker's `log` step
+   only sees files that are actually *compiled during that command* --
+   it's not a static "does this project have C files" check).
+2. **`build_command` must be a from-clean build, every time.** If it's an
+   incremental build system (plain `make`, for instance) and the previous
+   run already built everything, re-running `sectool scan`/`sectool run`
+   with the same `build_command` recompiles nothing, so `CodeChecker log`
+   captures zero compiler invocations and you silently get "0 total
+   findings" -- not an error, just an empty (and misleading) result. Make
+   `build_command` clean first, e.g.
+   `"make -C some/dir clean && make -C some/dir individuals"`.
+
+Also confirm step 3 above showed checkers for your configured guidelines.
 
 Once `scan` looks right, run the full pipeline (this does make real model
 API calls):

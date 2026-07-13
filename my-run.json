@@ -1,7 +1,7 @@
 {
   "project": {
     "root": "/home/ubuntu/github/Neural/C",
-    "build_command": "make -C testcases/CWE121_Stack_Based_Buffer_Overflow/s01 individuals",
+    "build_command": "make -C testcases/CWE121_Stack_Based_Buffer_Overflow/s01 clean && make -C testcases/CWE121_Stack_Based_Buffer_Overflow/s01 individuals",
     "test_command": "",
     "build_dir": "testcases/CWE121_Stack_Based_Buffer_Overflow/s01"
   },

@@ -22,6 +22,7 @@ class CommandResult:
     ok: bool
     detail: str  # Combined stdout+stderr tail on failure; empty on success.
     skipped: bool = False
+    full_detail: str = ""
 
 
 def run_build(
@@ -52,17 +53,21 @@ def _run_shell(worktree_path: Path, command: str, timeout: int) -> CommandResult
             timeout=timeout,
         )
     except subprocess.TimeoutExpired as exc:
+        full = f"{_text(exc.stdout)}\n{_text(exc.stderr)}".strip()
         return CommandResult(
             ok=False,
             detail=f"Command timed out after {timeout}s: {command}\n"
-            f"{_tail(exc.stdout)}\n{_tail(exc.stderr)}",
+            f"{_diagnostic_excerpt(full)}",
+            full_detail=full,
         )
 
     if proc.returncode != 0:
+        full = f"{proc.stdout}\n{proc.stderr}".strip()
         return CommandResult(
             ok=False,
             detail=f"Command exited {proc.returncode}: {command}\n"
-            f"{_tail(proc.stdout)}\n{_tail(proc.stderr)}",
+            f"{_diagnostic_excerpt(full)}",
+            full_detail=full,
         )
     return CommandResult(ok=True, detail="")
 
@@ -75,3 +80,24 @@ def _tail(text, max_lines: int = 100) -> str:
         return ""
     lines = text.splitlines()
     return "\n".join(lines[-max_lines:])
+
+
+def _text(value) -> str:
+    if value is None:
+        return ""
+    return value.decode(errors="replace") if isinstance(value, bytes) else str(value)
+
+
+def _diagnostic_excerpt(text: str, max_lines: int = 40) -> str:
+    """Keep actionable diagnostics and nearby context for an LLM retry."""
+    lines = text.splitlines()
+    markers = (" error:", "fatal error:", "undefined reference", "FAILED", "AssertionError")
+    indexes = [i for i, line in enumerate(lines) if any(marker in line for marker in markers)]
+    if not indexes:
+        return "\n".join(lines[-max_lines:])
+    selected: set[int] = set()
+    for index in indexes:
+        selected.update(range(max(0, index - 2), min(len(lines), index + 4)))
+        if len(selected) >= max_lines:
+            break
+    return "\n".join(lines[i] for i in sorted(selected)[:max_lines])

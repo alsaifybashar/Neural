@@ -103,6 +103,9 @@ class RunConfig:
     # Cap on how many findings to dispatch in one run. Phase 0/1 runs
     # intentionally work on a small slice; None means "all matched findings".
     finding_limit: int | None = None
+    context_max_files: int = 8
+    context_max_lines: int = 240
+    max_context_rounds: int = 4
 
     @staticmethod
     def from_file(path: Path) -> "RunConfig":
@@ -116,4 +119,7 @@ class RunConfig:
             ),
             max_attempts_per_finding=data.get("max_attempts_per_finding", 3),
             finding_limit=data.get("finding_limit"),
+            context_max_files=data.get("context_max_files", 8),
+            context_max_lines=data.get("context_max_lines", 240),
+            max_context_rounds=data.get("max_context_rounds", 4),
         )

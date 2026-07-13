@@ -13,20 +13,48 @@ from __future__ import annotations
 from sectool.findings.schema import Finding
 
 _INSTRUCTIONS = """\
-You are a secure coding assistant fixing a single static-analysis finding \
+You are a secure coding assistant resolving one root-cause task from static \
+analysis findings \
 in a C/C++ codebase. The finding was raised by CodeChecker and maps to a \
 SEI CERT C/C++ Coding Standard rule.
 
-Requirements for your fix:
-1. Produce the SMALLEST change that resolves the finding. Do not refactor, \
-rename, reformat, or "improve" unrelated code.
+Requirements:
+1. Investigate until you have enough authoritative source to make one coherent \
+change. If a name, signature, or declaration changes, account for ALL syntax \
+references, including later references in the same file.
 2. Preserve the existing function's behavior and public signature unless \
 the vulnerability makes that impossible.
 3. Do not introduce new dependencies, macros, or files.
-4. Respond with ONLY a unified diff (git-style, starting with `--- a/...` \
-and `+++ b/...` headers) inside a single ```diff fenced code block. Do not \
-include any explanation before or after the diff.
+4. Respond with ONLY one JSON object. Do not write a unified diff.
+
+Before the final proposal you may request one tool action per response:
+{"action":"search_symbol","symbol":"name","offset":0}
+{"action":"read_range","path":"repo/relative.cpp","start_line":1,"end_line":80}
+{"action":"read_definition","path":"repo/relative.cpp","line":42}
+{"action":"inspect_build","path":"repo/relative.cpp"}
+
+When ready, return:
+{"action":"propose_fix","root_cause":"...","edits":[{"path":"...",\
+"old_text":"exact text without line gutters","new_text":"replacement",\
+"expected_occurrences":1,"context_ids":["path:line"]}],\
+"occurrence_dispositions":[{"context_id":"path:line","disposition":"edited|unchanged",\
+"reason":"..."}]}
+
+Every search result must have a disposition. If search results are truncated, \
+request the next page before proposing a symbol rename. The host validates exact \
+text and generates the unified diff deterministically.
 """
+
+
+def _numbered(code_context: str, start_line: int) -> str:
+    """Renders source with the `N | ` gutter the instructions describe, so
+    the model can write hunk headers against the file's real line numbers
+    instead of guessing them from an unnumbered (and possibly mid-file)
+    window -- guessed numbers are the main way model diffs fail to apply."""
+    return "\n".join(
+        f"{start_line + i:>5} | {line}"
+        for i, line in enumerate(code_context.splitlines())
+    )
 
 
 def build_fix_prompt(
@@ -34,6 +62,15 @@ def build_fix_prompt(
     code_context: str,
     context_file_path: str,
     prior_feedback: str | None = None,
+    context_start_line: int = 1,
+    related_occurrences: list = (),
+    compile_command: str = "",
+    context_truncated: bool = False,
+    task_findings: list[Finding] = (),
+    remediation_guidance: str = "",
+    tool_history: list[dict] = (),
+    context_round: int = 0,
+    max_context_rounds: int = 4,
 ) -> str:
     """Assemble the full prompt text for one fix attempt.
 
@@ -42,6 +79,17 @@ def build_fix_prompt(
     surrounding code is included -- deliberately just the flagged
     function/file, not the whole project, per the tool's design: patches
     should be scoped and attributable to a single finding).
+    `context_start_line` is the 1-indexed file line the context starts at,
+    so the numbered gutter shows real file line numbers even when the
+    context is a mid-file window.
+
+    `context_file_path` is the repo-relative source identity used by context
+    tools and structured edits, not necessarily CodeChecker's absolute path.
+
+    `related_occurrences` (list of sectool.context.OccurrenceSnippet) are
+    places elsewhere in the project that reference an identifier the
+    finding names -- shown so a fix that renames a declaration can update
+    every reference in one multi-file diff instead of failing the build.
 
     `prior_feedback`, when set, is the previous attempt's verification
     failure (compiler error, failing test, or newly introduced finding)
@@ -68,13 +116,76 @@ def build_fix_prompt(
         f"Location: {finding.file_path}:{finding.line}:{finding.column}",
         f"Message: {finding.message}",
         "",
+    ]
+    if task_findings:
+        parts += [
+            "## Grouped target locations",
+            *[
+                f"- {item.report_hash}: {item.file_path}:{item.line}:{item.column} - {item.message}"
+                for item in task_findings
+            ],
+            "",
+        ]
+    if remediation_guidance:
+        parts += ["## Reviewed remediation guidance", remediation_guidance, ""]
+    if compile_command:
+        parts += [
+            "## Translation-unit compile command",
+            compile_command,
+            "",
+        ]
+    parts += [
         "## Analyzer trace (source-to-sink path)",
         trace_lines,
         "",
-        f"## Source ({context_file_path})",
+        f"## Source ({context_file_path}, lines "
+        f"{context_start_line}-{context_start_line + max(len(code_context.splitlines()) - 1, 0)}, "
+        f"shown with a line-number gutter)",
         "```c",
-        code_context,
+        _numbered(code_context, context_start_line),
         "```",
+    ]
+
+    if related_occurrences:
+        parts += [
+            "",
+            "## Other occurrences of the flagged identifier(s) and related project context",
+            "If your fix renames or changes a declaration, it must also "
+            "update every reference shown below -- otherwise the project "
+            "will not compile. Structured edits MAY target multiple files; "
+            "use each snippet's exact repo-relative path and omit the gutter "
+            "from old_text/new_text.",
+        ]
+        for occ in related_occurrences:
+            end_line = occ.start_line + max(len(occ.text.splitlines()) - 1, 0)
+            parts += [
+                "",
+                f"### {occ.file_path} (lines {occ.start_line}-{end_line}) "
+                f"[{getattr(occ, 'relationship', 'identifier reference')}]",
+                "```c",
+                _numbered(occ.text, occ.start_line),
+                "```",
+            ]
+
+    if context_truncated:
+        parts += [
+            "",
+            "Context collection reached its configured limit. Do not modify "
+            "symbols whose complete set of references is not shown.",
+        ]
+
+    if tool_history:
+        parts += ["", "## Context-tool transcript"]
+        for entry in tool_history:
+            parts += [
+                f"### Round {entry.get('round', '?')}",
+                f"Request: {entry.get('request', {})}",
+                f"Result: {entry.get('result', '')}",
+            ]
+    parts += [
+        "",
+        f"Context round: {context_round}/{max_context_rounds}. ",
+        "Return `propose_fix` now if the round limit has been reached.",
     ]
 
     if prior_feedback:
